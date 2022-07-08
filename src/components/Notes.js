@@ -12,7 +12,7 @@ export default function Notes() {
             
                 {
                     notes.map((note) => {
-                        return <Noteitem note={note} />
+                        return <Noteitem key={note._id} note={note} />
                     })
                 }
             

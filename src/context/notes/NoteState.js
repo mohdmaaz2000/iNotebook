@@ -5,7 +5,7 @@ import noteContext from "./noteContext";
 const NoteState = (props) =>{
    const mynotes=[
     {
-      "_id": "62c3fe4115ac7182e25fdbc0",
+      "_id": "62c3fe4115ac7182e25fdb5c0",
       "user": "62c01ecbeae8c04b8e7d4232",
       "title": "My title",
       "description": "This is the description",
@@ -14,7 +14,7 @@ const NoteState = (props) =>{
       "__v": 0
     },
     {
-      "_id": "62c6dc750203c9d4cefd828e",
+      "_id": "62c6dc750203c95d4cefd828e",
       "user": "62c01ecbeae8c04b8e7d4232",
       "title": "New Note 1",
       "description": "Please delete this note my name is jalebi bai 1",
@@ -23,7 +23,7 @@ const NoteState = (props) =>{
       "__v": 0
     },
     {
-      "_id": "62c6dc800203c9d4cefd8290",
+      "_id": "62c6dc8002063c9d4cefd8290",
       "user": "62c01ecbeae8c04b8e7d4232",
       "title": "Beatiful Notes 1",
       "description": "Please delete this note my name is jalebi bai 1",
@@ -32,7 +32,7 @@ const NoteState = (props) =>{
       "__v": 0
     },
     {
-      "_id": "62c6dc750203c9d4cefd828e",
+      "_id": "62c6dc7570203c9d4cefd828e",
       "user": "62c01ecbeae8c04b8e7d4232",
       "title": "New Note 1",
       "description": "Please delete this note my name is jalebi bai 1",
@@ -41,7 +41,7 @@ const NoteState = (props) =>{
       "__v": 0
     },
     {
-      "_id": "62c6dc750203c9d4cefd828e",
+      "_id": "62c6dc7501203c9d4cefd828e",
       "user": "62c01ecbeae8c04b8e7d4232",
       "title": "New Note 1",
       "description": "Please delete this note my name is jalebi bai 1",
@@ -49,7 +49,7 @@ const NoteState = (props) =>{
       "date": "2022-07-07T13:11:35.982Z",
       "__v": 0
     },{
-      "_id": "62c6dc750203c9d4cefd828e",
+      "_id": "62c6dc750203c9d4cefd82d8e",
       "user": "62c01ecbeae8c04b8e7d4232",
       "title": "New Note 1",
       "description": "Please delete this note my name is jalebi bai 1",
