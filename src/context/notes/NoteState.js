@@ -51,7 +51,7 @@ const NoteState = (props) => {
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJjMDFlY2JlYWU4YzA0YjhlN2Q0MjMyIn0sImlhdCI6MTY1NjkxOTcyMX0.WBaX5cg7LkiFydGD-y2PI9bwiMY0b8aBRZfCzyjHvaA'
       },
     });
-    const json = response.json();
+    const json = await response.json();
     console.log(json)
     const newnote = notes.filter((note) => { return note._id !== id });
     // console.log(newnote)

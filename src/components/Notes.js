@@ -54,13 +54,13 @@ export default function Notes() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label" >Tag</label>
-                                    <input type="text" className="form-control" value={note.etag} onChange={onchange} name='etag' id="etag" />
+                                    <input required type="text" className="form-control" value={note.etag} onChange={onchange} name='etag' id="etag" />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" ref={closeref} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleClick} >Update Note</button>
+                            <button disabled={note.etitle.length < 3 || note.edescription.length < 5 || note.etag.length < 1} type="button" className="btn btn-primary" onClick={handleClick} >Update Note</button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,9 @@ export default function Notes() {
             {/* Printing the saved note */}
             <div className='row my-3'>
                 <h2 className='my-6'>Your Notes</h2>
-
+                <div className="container mx-2 my-2">
+                {notes.length === 0 && "No notes, add notes above to see"}
+                </div>
                 {
                     notes.map((note) => {
                         return <Noteitem key={note._id} note={note} updatenote={updatenote} />
