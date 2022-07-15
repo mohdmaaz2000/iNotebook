@@ -38,8 +38,8 @@ route.post('/createUser', [
     ;
 
     const data = {
-      user:{
-        id : user.id
+      user: {
+        id: user.id
       }
     }
     const token = jwt.sign(data, JWT_TOKEN);
@@ -53,41 +53,44 @@ route.post('/createUser', [
 });
 
 //Route 2 :  Creating a endpoint for login a user using post (/api/auth/login)
-route.post('/login',[
+route.post('/login', [
   body('email', 'Enter valid email').isEmail()
-], async (req,res)=>{
+], async (req, res) => {
+  let success = false
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).send("Enter valid Credentials");
+    return res.status(400).send({ success: success, error: "Enter valid Credentials" });
   }
 
-  const {email,password} = req.body
-  try {
-    const user = await User.findOne({email : email});
 
-    if(!user){
-    return res.status(400).send("Enter valid Credentials");
-    }
-    const compare =await bcrypt.compare(password, user.password);
-    if(!compare){
+  const { email, password } = req.body
+  try {
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
       return res.status(400).send("Enter valid Credentials");
     }
-    
+    const compare = await bcrypt.compare(password, user.password);
+    if (!compare) {
+      return res.status(400).send({ success: success, error: "Enter valid Credentials" });
+    }
+
     const data = {
-      user : {
+      user: {
         id: user.id
       }
     }
-    const token = jwt.sign(data,JWT_TOKEN);
-    res.send(token);
-    
+    success = true
+    const token = jwt.sign(data, JWT_TOKEN);
+    return res.send({ success: success, token: token });
+
   } catch (error) {
-    res.status(400).send("Enter valid Credentials");
+    return res.status(400).send({ success: success, error: "Enter valid Credentials" });
   }
 });
 
 // Route 3 : Creating a middleware for decoding jwt token using post (/api/auth/fetchUser)
-route.post('/fetchUser',fetchuser ,async (req,res)=>{
+route.post('/fetchUser', fetchuser, async (req, res) => {
   try {
     const UserId = req.user.id;
     const user = await User.findById(UserId).select("-password");
@@ -95,6 +98,6 @@ route.post('/fetchUser',fetchuser ,async (req,res)=>{
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
-}) 
+})
 
 module.exports = route;
