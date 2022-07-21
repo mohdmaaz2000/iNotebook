@@ -17,15 +17,17 @@ route.post('/createUser', [
   body('email', 'Enter valid email').isEmail(),
   body('password', 'Password too short').isLength({ min: 8 })
 ], async (req, res) => {
+
+  let success = false
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({ success: success, errors: errors.array() });
   }
 
   try {
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-      return res.status(400).send("Email already exist");
+      return res.status(400).send({ success: success, error: "Email already exist" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -44,11 +46,12 @@ route.post('/createUser', [
     }
     const token = jwt.sign(data, JWT_TOKEN);
     console.log(token);
-    res.send(token);
+    success = true
+    res.send({ success: success, token: token });
   }
   catch (err) {
     console.error(err.message);
-    res.status(404).send("Something unexpected happened");
+    res.status(404).send({ success: success, error: "Something unexpected happened" });
   }
 });
 
