@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Signup() {
+export default function Signup(props) {
   const [credentials, setCredentials] = useState({ name: '', email: '', password: '', cpassword: '' })
   const navigate = useNavigate();
 
@@ -28,18 +28,20 @@ export default function Signup() {
         // redirect
         localStorage.setItem('iNotebookToken', data.token);
         navigate('/');
+        props.showAlert("Signed up successfully","success");
       }
       else {
-        alert("Enter valid credentials");
+        props.showAlert("Enter valid credentials","danger");
       }
     }
     else {
-      alert("Passworf did not match")
+      props.showAlert("Password did not match","danger")
     }
   }
 
   return (
-    <div className='container'>
+    <div className='container box' >
+      <h2 style={{textAlign:"center"}}>Sign Up</h2>
       <form onSubmit={submit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>

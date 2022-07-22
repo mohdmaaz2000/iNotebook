@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useContext } from 'react'
 import noteContext from '../context/notes/noteContext'
 
-export default function Addnote() {
+export default function Addnote(props) {
   const context = useContext(noteContext);
   const { addNote } = context;
   const [note, setNote] = useState({ title: "", description: "", tag: ""});
@@ -12,14 +12,14 @@ export default function Addnote() {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
     setNote({title: "", description: "", tag: ""});
-
+    props.showAlert("Notes Addedd Successfully","success");
   }
   const onchange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value })
   }
   return (
-    <div>
-      <h2 className='my-6'>Add Notes</h2>
+    <div className='container box'>
+      <h2 className='my-6' style={{textAlign:"center"}}>Add Notes</h2>
       <form className='container my-6'>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>

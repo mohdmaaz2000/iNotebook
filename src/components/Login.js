@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 
-export default function Login() {
+export default function Login(props) {
   const [credentials, setCredentials] = useState({ email: '', password: '' })
   const navigate = useNavigate();
 
@@ -25,16 +25,18 @@ export default function Login() {
       // redirect
       localStorage.setItem('iNotebookToken',data.token);
       navigate('/');
+      props.showAlert("Logged in Successfully","success");
     }
     else{
-      alert("Enter valid credentials");
+      props.showAlert("Enter valid credentials","danger");
     }
   }
 
   return (
-    <div>
+    <div className="container box">
       <form onSubmit={onsubmit}>
-        <div className="mb-3">
+        <div className="mb-3" >
+          <h2 style={{textAlign:"center"}}>Login</h2>
           <label htmlFor="email" className="form-label">Email address</label>
           <input type="email" onChange={onchange} className="form-control" name='email' id="email" aria-describedby="emailHelp" />
         </div>

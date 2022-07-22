@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState, useRef } from 'react';
 import noteContext from '../context/notes/noteContext'
 import Noteitem from './Noteitem.js'
 
-export default function Notes() {
+export default function Notes(props) {
     const context = useContext(noteContext);
     const { notes, getAllNotes, editnote } = context;
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
@@ -60,7 +60,7 @@ export default function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button type="button" ref={closeref} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={note.etitle.length < 3 || note.edescription.length < 5 || note.etag.length < 1} type="button" className="btn btn-primary" onClick={handleClick} >Update Note</button>
+                            <button disabled={note.etitle.length < 3 || note.edescription.length < 5 || note.etag.length < 1} type="button" className="btn btn-primary" onClick={()=>{handleClick();props.showAlert("Note Edited Successfully","success")}} >Update Note</button>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export default function Notes() {
                 </div>
                 {
                     notes.map((note) => {
-                        return <Noteitem key={note._id} note={note} updatenote={updatenote} />
+                        return <Noteitem key={note._id} showAlert={props.showAlert} note={note} updatenote={updatenote} />
                     })
                 }
 

@@ -2,14 +2,14 @@ import React from 'react'
 import Addnote from './Addnote'
 import Notes from './Notes'
 
-const Home = () => {
+const Home = (props) => {
 
   return (
     <div>
-      <Addnote />
+      <Addnote showAlert={props.showAlert} />
       <hr />
       <div className="my-3">
-        <Notes />
+        <Notes showAlert={props.showAlert}/>
       </div>
     </div>
   )
