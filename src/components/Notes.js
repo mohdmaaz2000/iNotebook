@@ -1,8 +1,10 @@
 import React, { useEffect, useContext, useState, useRef } from 'react';
 import noteContext from '../context/notes/noteContext'
 import Noteitem from './Noteitem.js'
+import { useNavigate} from 'react-router-dom';
 
 export default function Notes(props) {
+    const navigate = useNavigate();
     const context = useContext(noteContext);
     const { notes, getAllNotes, editnote } = context;
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
@@ -10,7 +12,12 @@ export default function Notes(props) {
     const closeref = useRef(null);
 
     useEffect(() => {
-        getAllNotes();
+        if(localStorage.getItem('iNotebookToken')){
+            getAllNotes();
+        }
+        else{
+            navigate('/login');
+        }
     }, []);
 
     const handleClick = (e) => {
@@ -68,7 +75,7 @@ export default function Notes(props) {
 
             {/* Printing the saved note */}
             <div className='row my-3'>
-                <h2 className='my-6'>Your Notes</h2>
+                <h2 className='my-6'>My Notes</h2>
                 <div className="container mx-2 my-2">
                 {notes.length === 0 && "No notes, add notes above to see"}
                 </div>

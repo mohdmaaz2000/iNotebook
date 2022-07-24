@@ -38,14 +38,16 @@ export default function Login(props) {
         <div className="mb-3" >
           <h2 style={{textAlign:"center"}}>Login</h2>
           <label htmlFor="email" className="form-label">Email address</label>
-          <input type="email" onChange={onchange} className="form-control" name='email' id="email" aria-describedby="emailHelp" />
+          <input placeholder='example@email.com' type="email" onChange={onchange} className="form-control" name='email' id="email" aria-describedby="emailHelp" />
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
-          <input onChange={onchange} type="password" name='password' className="form-control" id="pasword" />
+          <input placeholder='Enter password' onChange={onchange} type="password" name='password' className="form-control" id="pasword" />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary mx-1 my-1">Login</button>
       </form>
+      <p className='my-2'>Already have an account</p>
+        <button role="button" className="btn btn-primary mx-1 my-1">Sign Up</button>
     </div>
   )
 }

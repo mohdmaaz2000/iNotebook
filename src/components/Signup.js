@@ -28,39 +28,42 @@ export default function Signup(props) {
         // redirect
         localStorage.setItem('iNotebookToken', data.token);
         navigate('/');
-        props.showAlert("Signed up successfully","success");
+        props.showAlert("Signed up successfully", "success");
       }
       else {
-        props.showAlert("Enter valid credentials","danger");
+        props.showAlert("Enter valid credentials", "danger");
       }
     }
     else {
-      props.showAlert("Password did not match","danger")
+      props.showAlert("Password did not match", "danger")
     }
   }
 
   return (
     <div className='container box' >
-      <h2 style={{textAlign:"center"}}>Sign Up</h2>
+      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
       <form onSubmit={submit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
-          <input type="text" className="form-control" onChange={onchange} name='name' id="name" aria-describedby="emailHelp" required minLength={3} />
+          <input placeholder='Enter yor name' type="text" className="form-control" onChange={onchange} name='name' id="name" aria-describedby="emailHelp" required minLength={3} />
         </div>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
-          <input type="email" className="form-control" onChange={onchange} name='email' id="email" aria-describedby="emailHelp" required />
+          <input placeholder='Enter yor email' type="email" className="form-control" onChange={onchange} name='email' id="email" aria-describedby="emailHelp" required />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
+          <label placeholder='Enter your password' htmlFor="password" className="form-label">Password</label>
           <input type="password" name='password' className="form-control" onChange={onchange} id="password" required minLength={8} />
         </div>
         <div className="mb-3">
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-          <input type="password" name='cpassword' className="form-control" onChange={onchange} id="cpassword" required minLength={8} />
+          <input placeholder='Re-enter your password' type="password" name='cpassword' className="form-control" onChange={onchange} id="cpassword" required minLength={8} />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+
       </form>
+      <button type="submit" className="btn btn-primary">Sign up</button>
+      <p className='my-2'>Already have an account</p>
+      <button role="button" className="btn btn-primary">Login</button>
     </div>
   )
 }
