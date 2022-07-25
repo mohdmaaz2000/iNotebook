@@ -41,6 +41,36 @@
   color: #61dafb;
 }
 
+.heading{
+  text-align: center;
+  text-decoration: underline;
+  font-size: 3rem;
+  margin: 40px;
+}
+.my-container{
+  width: 80%;
+}
+
+.details{
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+}
+
+.details b{
+  margin-right: 40px;
+}
+
+.details p{
+  margin-left: 40px;
+}
+.my-btn{
+  margin: 3px 3px 20px 10px;
+  display: block;
+  width: 20%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

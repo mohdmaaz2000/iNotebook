@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const JWT_TOKEN = "Mynameismaaz";
 
 const fetchUser = (req, res, next) => {
-    //    Get the user from the jwt Token and add id to req object
+    // Get the user from the jwt Token and add id to req object
     const token = req.header('auth-token');
     if (!token) {
         res.status(401).send({ error: "Please enter the valid token" });

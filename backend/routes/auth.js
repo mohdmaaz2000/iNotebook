@@ -93,14 +93,16 @@ route.post('/login', [
 });
 
 // Route 3 : Creating a middleware for decoding jwt token using post (/api/auth/fetchUser)
-route.post('/fetchUser', fetchuser, async (req, res) => {
+route.get('/fetchUser', fetchuser, async (req, res) => {
   try {
     const UserId = req.user.id;
     const user = await User.findById(UserId).select("-password");
     res.send(user);
   } catch (error) {
-    res.status(500).send("Internal Server Error");
+    res.status(500).send({error:"Internal Server Error"});
   }
-})
+});
+
+// Route 4 : Deleting the user account
 
 module.exports = route;

@@ -33,8 +33,8 @@ const Navbar = () => {
                         <Link className="btn btn-primary mx-1" role="button" to="/login">Login</Link>
                         <Link className="btn btn-primary mx-1" role="button" to="/signup">Signup</Link>
                     
-                        </form>:<><button className='btn btn-primary mx-1' onClick={logout}>Logout</button>
-                        <i className="fa-solid fa-user mx-1" style={{color:"white"}}></i></>}
+                        </form>:<><button className='btn btn-primary mx-1' onClick={logout}>Logout <i style={{color:"white"}} className="fa-solid fa-arrow-right-from-bracket"></i></button>
+                        <i className="fa-solid fa-user mx-2" onClick={()=>{navigate('/profile')}} style={{color:"white",fontSize:"27px"}}></i></>}
                     </div>
                 </div>
             </nav>

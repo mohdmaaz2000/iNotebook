@@ -20,7 +20,6 @@ const NoteState = (props) => {
     setNotes(json)
   }
 
-
   // Add Note
   const addNote = async (title, description, tag) => {
     // API Call
@@ -83,7 +82,6 @@ const NoteState = (props) => {
       }
     }
     setNotes(newNotes);
-    
   }
 
   return (
