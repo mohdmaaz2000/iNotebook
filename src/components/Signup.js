@@ -39,6 +39,10 @@ export default function Signup(props) {
     }
   }
 
+  const toLogin = () =>{
+    navigate('/login');
+  }
+
   return (
     <div className='container box' >
       <h2 style={{ textAlign: "center" }}>Sign Up</h2>
@@ -52,8 +56,8 @@ export default function Signup(props) {
           <input placeholder='Enter yor email' type="email" className="form-control" onChange={onchange} name='email' id="email" aria-describedby="emailHelp" required />
         </div>
         <div className="mb-3">
-          <label placeholder='Enter your password' htmlFor="password" className="form-label">Password</label>
-          <input type="password" name='password' className="form-control" onChange={onchange} id="password" required minLength={8} />
+          <label  htmlFor="password" className="form-label">Password</label>
+          <input placeholder='Minimum 8 characters' type="password" name='password' className="form-control" onChange={onchange} id="password" required minLength={8} />
         </div>
         <div className="mb-3">
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>
@@ -61,9 +65,9 @@ export default function Signup(props) {
         </div>
 
       </form>
-      <button type="submit" className="btn btn-primary">Sign up</button>
+      <button type="submit" className="btn btn-primary" onClick={submit}>Sign up</button>
       <p className='my-2'>Already have an account</p>
-      <button role="button" className="btn btn-primary">Login</button>
+      <button onClick={toLogin} role="button" className="btn btn-primary">Login</button>
     </div>
   )
 }

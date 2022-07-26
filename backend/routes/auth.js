@@ -99,10 +99,40 @@ route.get('/fetchUser', fetchuser, async (req, res) => {
     const user = await User.findById(UserId).select("-password");
     res.send(user);
   } catch (error) {
-    res.status(500).send({error:"Internal Server Error"});
+    res.status(500).send({ error: "Internal Server Error" });
   }
 });
 
-// Route 4 : Deleting the user account
+// Route 4 : Code to delete a user account using delete
+route.delete('/delUser', fetchuser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const del = await User.remove({ _id: userId });
+    res.send(del);
+  } catch (error) {
+    res.status(500).send({ error: "Interval server error" });
+  }
+});
+
+// Route 5 : Code to edit password
+route.put('/editPassword', fetchuser, async (req, res) => {
+  let success = false
+  try {
+    const userId = req.user.id;
+    const { cpassword, password } = req.body;
+    const pass = await User.findById(userId)
+    const compare = await bcrypt.compare(cpassword, pass.password);
+    if (!compare) {
+      return res.status(400).send({ success: success, error: "Current Password did not match",  });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const secPass = await bcrypt.hash(password, salt);
+    const newPass = await User.findByIdAndUpdate(userId, { $set: { password: secPass } }, { new: true });
+    success = true
+    return res.send({ success: success });
+  } catch (error) {
+    return res.status(500).send({ success: success, error: "Internal server error" });
+  }
+});
 
 module.exports = route;

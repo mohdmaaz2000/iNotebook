@@ -12,7 +12,7 @@ route.get('/fetchAll', fetchUser, async (req, res) => {
         res.json(mynotes);
 
     } catch (error) {
-        res.status(500).send({error:"Internal error ocurred"});
+        res.status(500).send({ error: "Internal error ocurred" });
     }
 });
 
@@ -33,7 +33,7 @@ route.post('/addnotes', fetchUser, [
         const savednote = await note.save();
         res.send(savednote);
     } catch (error) {
-        res.status(500).send({error:"Internal error ocurred"});
+        res.status(500).send({ error: "Internal error ocurred" });
     }
 });
 
@@ -51,19 +51,19 @@ route.put('/updatenote/:id', fetchUser, async (req, res) => {
         // Find the note to updated and update it
         let note = await Notes.findById(req.params.id);
         if (!note) {
-            return res.status(404).send({error:"Notes Not found"});
+            return res.status(404).send({ error: "Notes not found" });
         }
 
         // Checking if the user has the permission to update the notes or not
         if (note.user.toString() !== req.user.id) {
-            return res.status(401).send({error:"You dont have the permission to update this note"});
+            return res.status(401).send({ error: "You dont have the permission to update this note" });
         }
 
         // Updating the note
         note = await Notes.findByIdAndUpdate(req.params.id, { $set: newnote }, { new: true });
         res.json(note);
     } catch (error) {
-        res.status(500).send({error:"Internal error ocurred"});
+        res.status(500).send({ error: "Internal error ocurred" });
     }
 });
 
@@ -73,19 +73,30 @@ route.delete('/deletenote/:id', fetchUser, async (req, res) => {
         // Checking if the note is present or not
         let note = await Notes.findById(req.params.id);
         if (!note) {
-            return res.status(404).send({error:"Notes not found"});
+            return res.status(404).send({ error: "Notes not found" });
         }
 
         // Checking if the user has the permision to delete the notes or not
         if (note.user.toString() !== req.user.id) {
-            return res.status(401).send({error:"Access denied"});
+            return res.status(401).send({ error: "Access denied" });
         }
 
         // Deleting the note if user has the permission
         note = await Notes.findByIdAndDelete(req.params.id);
-        res.send({message:`Notes with id ${req.params.id} has been deleted successfully`});
+        res.send({ message: `Notes with id ${req.params.id} has been deleted successfully` });
     } catch (error) {
-        res.status(500).send({error:"Internal error ocurred"});
+        res.status(500).send({ error: "Internal error ocurred" });
+    }
+});
+
+// Route 5 : Code to delete all the notes of a particular user using delete
+route.delete('/deleteAllNote', fetchUser, async (req, res) => {
+    const userId = req.user.id;
+    const del = await Notes.deleteMany({ user: userId });
+    res.send(del);
+    try {
+    } catch (error) {
+        res.status(500).send("Internal server error");
     }
 });
 

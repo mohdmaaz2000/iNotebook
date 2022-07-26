@@ -31,7 +31,10 @@ export default function Login(props) {
       props.showAlert("Enter valid credentials","danger");
     }
   }
-
+  
+  const toSignup = () =>{
+    navigate('/signup');
+  }
   return (
     <div className="container box">
       <form onSubmit={onsubmit}>
@@ -47,7 +50,7 @@ export default function Login(props) {
         <button type="submit" className="btn btn-primary mx-1 my-1">Login</button>
       </form>
       <p className='my-2'>Already have an account</p>
-        <button role="button" className="btn btn-primary mx-1 my-1">Sign Up</button>
+        <button onClick={toSignup} role="button" className="btn btn-primary mx-1 my-1">Sign Up</button>
     </div>
   )
 }
