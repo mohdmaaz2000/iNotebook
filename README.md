@@ -1,3 +1,10 @@
+A website where you can save, update, delete you notes using authorised login.
+
+![Screenshot (352)](https://user-images.githubusercontent.com/97888220/236391689-75e13fdf-d8b1-4006-9eb8-39c84f6689fa.png)
+
+![Screenshot (353)](https://user-images.githubusercontent.com/97888220/236391742-8f3dcd07-266a-4343-830a-53e01424161a.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
